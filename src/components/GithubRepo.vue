@@ -77,7 +77,9 @@ let debounceUser = null
         this.procuraUsersDebounced()
       },
       user() {
+        if (this.user) {
           this.listaRepositorios(this.user)
+        }
       },
       repo () {
           console.log(this.repo)
