@@ -38,19 +38,19 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
+      <GithubVue/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import GithubVue from './components/GhView.vue';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    GithubVue,
   },
 
   data: () => ({
