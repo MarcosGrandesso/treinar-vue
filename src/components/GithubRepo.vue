@@ -22,19 +22,13 @@
         ></v-select>
       </v-col>
     </v-row>
-    
-        <div>
-          <v-btn @click="vai"> 
-            Vai
-          </v-btn>
-        </div>
   </div>
 </template>
 
 <script>
-
+ import { debouncerdecorator } from '../helpers/debouncer'
 import { api } from '../api/api.js'
-let debounceUser = null
+// let debounceUser = null
 
   export default {
     data: () => ({
@@ -47,16 +41,15 @@ let debounceUser = null
       usersearch: null
     }),
     methods: {
-      procuraUsersDebounced () {
-        if (debounceUser) {
-          clearTimeout(debounceUser)
-        }
-        this.debounceUser = setTimeout(() => {
-          this.getUser() 
-          debounceUser = null
-        }, 760)
 
-      },
+
+      procuraUsuariosGithub: debouncerdecorator(async function () { // atenção: não use ()=>{} aqui. vai quebrar o decorator
+        this.userloading = true
+        const data = await api.search_users(this.usersearch)
+        this.userlist = data.items
+        this.userloading = false
+      }, 500),
+
       async listaRepositorios() {
           this.repoloading =true 
           const data = await api.lista_repos(this.user)
@@ -74,7 +67,7 @@ let debounceUser = null
     },
     watch: {
       usersearch() {
-        this.procuraUsersDebounced()
+        this.procuraUsuariosGithub()
       },
       user() {
         if (this.user) {
@@ -82,7 +75,7 @@ let debounceUser = null
         }
       },
       repo () {
-          console.log(this.repo)
+          this.$emit("repo-selected", this.repo)
       }
     }
   }

@@ -5,7 +5,6 @@ async function fetch_all_pages(url) {
   while(vai) {
     const response = await fetch(`${url}?page=${page}`)
     const tmpitems = await response.json()
-    // debugger
     if (tmpitems.length > 0) {
       result = result.concat(tmpitems)
       page++
@@ -25,5 +24,16 @@ export const api = {
     const url = `https://api.github.com/users/${username}/repos`
     const result = await fetch_all_pages(url)
     return result
+  },
+  async listaIssues(owner, name, page) {
+    const url = `https://api.github.com/repos/${owner}/${name}/issues?page=${page}`
+    const result = await fetch(url)
+    return await result.json()
+  },
+  async getRepo(owner,name,path='') {
+    const url = `https://api.github.com/repos/${owner}/${name}/contents/${path}`
+    const result = await fetch(url)
+    return await result.json()
+
   }
 }
