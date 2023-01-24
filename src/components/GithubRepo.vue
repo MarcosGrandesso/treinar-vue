@@ -1,16 +1,17 @@
 <template>
-  <div>
-    <v-row class="text-center">
-      <v-col cols="6">
+  <div >
+    <v-row class="text-center fxc">
+      <v-col >
         <v-autocomplete
         v-model="user"
         :items="userlist"
+        label="Selecione Owner do repositorio"
         :loading="userloading"
         :search-input.sync="usersearch"
         item-text="login"
         />
       </v-col>
-      <v-col cols="6">
+      <v-col >
         <v-select
           v-model="repo"
           :items="repolist"
@@ -80,3 +81,10 @@ import { api } from '../api/api.js'
     }
   }
 </script>
+
+<style scoped>
+.fxc {
+  display: flex;
+  flex-direction: column;
+}
+</style>

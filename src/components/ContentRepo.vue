@@ -1,10 +1,22 @@
 <template>
   <div>
-    <p>{{ repo.name}}/{{ rootPath }}</p>
-    <div v-if="rootPath">
-          <v-btn @click="volta"> 
-            Voltar
-          </v-btn>
+    <div class="fx path">
+      <v-chip
+        class="ma-2"
+        color="deep-purple accent-1"
+        label
+        text-color="white"
+      >PATH &nbsp; &nbsp;
+        <v-icon left>
+          mdi-label
+        </v-icon>
+         {{ repo.name}}/{{ rootPath }}
+      </v-chip>
+      <div v-if="rootPath">
+            <v-btn @click="volta"> 
+              Voltar
+            </v-btn>
+    </div>
         </div>
         <div v-for="item in repoContent" :key="item.name">
           <div class="fx" @click="atualizaPath(item)" v-if="item.type === 'dir'">
@@ -67,5 +79,9 @@ export default {
 <style>
 .fx {
   display: flex;
+}
+
+.path { 
+  gap: 2rem;
 }
 </style>
