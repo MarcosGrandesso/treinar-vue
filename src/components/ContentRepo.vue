@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <div class="fx path">
+  <div class="justify-center d-flex">
+    <div class="fx path flex-column">
       <v-chip
-        class="ma-2"
+        class="ma-2 margin-t"
         color="deep-purple accent-1"
         label
         text-color="white"
@@ -12,23 +12,26 @@
         </v-icon>
          {{ repo.name}}/{{ rootPath }}
       </v-chip>
-      <div v-if="rootPath">
+
+      <div v-if="rootPath" class="btn-ajust">
             <v-btn @click="volta"> 
               Voltar
-            </v-btn>
+      </v-btn>
     </div>
+    <div class="directions-r">
+      <div v-for="item in repoContent" :key="item.name" class="directions-r">
+        <div class="fx ml-5" @click="atualizaPath(item)" v-if="item.type === 'dir'">
+          <i class="mdi mdi-folder-outline"></i> 
+          &nbsp;
+          <p>{{ item.name}}</p> 
         </div>
-        <div v-for="item in repoContent" :key="item.name">
-          <div class="fx" @click="atualizaPath(item)" v-if="item.type === 'dir'">
-            <i class="mdi mdi-folder-outline"></i> 
-            &nbsp;
-            <p>{{ item.name}}</p> 
-          </div>
-          <div class="fx" v-else>
-            <i class="mdi mdi-file"></i>
-            &nbsp;
-            <p>{{ item.name}}</p> 
-          </div>
+        <div class="fx ml-5" v-else @click="contentItem(item)">
+          <i class="mdi mdi-file"></i>
+          &nbsp;
+          <p>{{ item.name}}</p> 
+        </div>
+      </div>
+    </div>
         </div>
   </div>
 </template>
@@ -61,6 +64,9 @@ export default {
       volta() {
         this.rootPath = ''
         this.getContent(this.repo)
+      },
+      contentItem(item) {
+        console.log(item)
       }
   },
   watch: {
@@ -83,5 +89,13 @@ export default {
 
 .path { 
   gap: 2rem;
+}
+.directions-r {
+  flex-direction: column;
+}
+.btn-ajust {
+  max-width: 80px;
+  display: flex;
+  margin: auto;
 }
 </style>

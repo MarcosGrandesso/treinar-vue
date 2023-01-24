@@ -1,14 +1,14 @@
 <template>
   <v-container>
-    <GithubRepo @repo-selected="onRepoSelected"/>
-    <GithubIssues :repo="repo" />
+    <GithubRepo @repo-selected="onRepoSelected" class="inputs"/>
+    <!-- <GithubIssues :repo="repo" /> -->
     <ContentRepo :repo="repo"/>
   </v-container>
 </template>
 
 <script>
 import GithubRepo from './GithubRepo'
-import GithubIssues from './GithubIssues'
+// import GithubIssues from './GithubIssues'
 import ContentRepo from './ContentRepo'
 
 
@@ -17,7 +17,7 @@ import ContentRepo from './ContentRepo'
     components: {
     // HelloWorld,
     GithubRepo,
-    GithubIssues,
+    // GithubIssues,
     ContentRepo
   },
     data: () => ({
@@ -30,3 +30,9 @@ import ContentRepo from './ContentRepo'
     }
   }
 </script>
+
+<style>
+.inputs {
+  margin-top: 10rem;
+}
+</style>

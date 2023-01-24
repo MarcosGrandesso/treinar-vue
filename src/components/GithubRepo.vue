@@ -1,8 +1,17 @@
 <template>
   <div >
     <v-row class="text-center fxc">
+      <p v-if="this.picture">
+        <v-avatar  size="128">
+        <img
+          :src="this.picture"
+        >
+      </v-avatar>
+    </p>
+      <h1> {{ this.user }}</h1>
       <v-col >
         <v-autocomplete
+        v-if="!this.user"
         v-model="user"
         :items="userlist"
         label="Selecione Owner do repositorio"
@@ -13,6 +22,7 @@
       </v-col>
       <v-col >
         <v-select
+        v-if="!this.repo"
           v-model="repo"
           :items="repolist"
           item-text="name"
@@ -33,6 +43,7 @@ import { api } from '../api/api.js'
 
   export default {
     data: () => ({
+      picture:'',
       repo: null,
       user:null,
       userlist: [],
@@ -64,6 +75,11 @@ import { api } from '../api/api.js'
 
           this.userlist = data.items
           this.userloading = false
+      },
+      async getFoto(user) {
+        const data = await api.search_users(user)
+        this.picture = await data.items[0].avatar_url
+
       }
     },
     watch: {
@@ -72,6 +88,7 @@ import { api } from '../api/api.js'
       },
       user() {
         if (this.user) {
+          this.getFoto(this.user)
           this.listaRepositorios(this.user)
         }
       },
