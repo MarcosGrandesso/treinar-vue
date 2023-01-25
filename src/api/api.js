@@ -35,5 +35,9 @@ export const api = {
     const result = await fetch(url)
     return await result.json()
 
+  },
+  async getFileContent(url) {
+    const result = await fetch(url)
+    return await result.text()
   }
 }

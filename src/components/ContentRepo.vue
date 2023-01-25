@@ -19,7 +19,8 @@
       </v-btn>
     </div>
     <div class="directions-r">
-      <div v-for="item in repoContent" :key="item.name" class="directions-r">
+      <TreeView :content="repoContent" :reponame="this.$props.repo" />
+      <!-- <div v-for="item in repoContent" :key="item.name" class="directions-r">
         <div class="fx ml-5" @click="atualizaPath(item)" v-if="item.type === 'dir'">
           <i class="mdi mdi-folder-outline"></i> 
           &nbsp;
@@ -30,7 +31,7 @@
           &nbsp;
           <p>{{ item.name}}</p> 
         </div>
-      </div>
+      </div> -->
     </div>
         </div>
   </div>
@@ -39,8 +40,12 @@
 <script>
 
 import { api } from '../api/api.js'
+import TreeView from './TreeView.vue'
 
 export default {
+  components:{
+      TreeView
+  },
   data: () => ({
       repoContent: null,
       rootPath:''

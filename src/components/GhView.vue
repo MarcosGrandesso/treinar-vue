@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <codehighligth :code="'let'"></codehighligth>
     <GithubRepo @repo-selected="onRepoSelected" class="inputs"/>
     <!-- <GithubIssues :repo="repo" /> -->
     <ContentRepo :repo="repo"/>
