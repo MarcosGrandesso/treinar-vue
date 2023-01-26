@@ -36,7 +36,6 @@ export default {
   props: ["repo"],
   methods: {
     async getContent(repo, possivel_path = "") {
-      
       this.repoContent = await api.getRepo(
         repo.owner.login,
         repo.name,
