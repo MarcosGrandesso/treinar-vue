@@ -4,11 +4,9 @@ module.exports = {
     browser: true,
     node: true,
   },
-  extends: [
-    'plugin:vue/essential', 'eslint:recommended'
-  ],
+  extends: ["plugin:vue/essential", "eslint:recommended"],
   rules: {
-    'vue/multi-word-component-names': 'off',
-    'no-debugger': 'off',
+    "vue/multi-word-component-names": "off",
+    "no-debugger": "off",
   },
-}
+};

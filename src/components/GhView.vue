@@ -1,35 +1,33 @@
 <template>
   <v-container>
     <codehighligth :code="'let'"></codehighligth>
-    <GithubRepo @repo-selected="onRepoSelected" class="inputs"/>
+    <GithubRepo @repo-selected="onRepoSelected" class="inputs" />
     <!-- <GithubIssues :repo="repo" /> -->
-    <ContentRepo :repo="repo"/>
+    <ContentRepo :repo="repo" />
   </v-container>
 </template>
 
 <script>
-import GithubRepo from './GithubRepo'
+import GithubRepo from "./GithubRepo";
 // import GithubIssues from './GithubIssues'
-import ContentRepo from './ContentRepo'
+import ContentRepo from "./ContentRepo";
 
-
-
-  export default {
-    components: {
+export default {
+  components: {
     // HelloWorld,
     GithubRepo,
     // GithubIssues,
-    ContentRepo
+    ContentRepo,
   },
-    data: () => ({
-      repo: null
-    }),
-    methods: {
-      onRepoSelected(repo) {
-          this.repo =repo
-      }
-    }
-  }
+  data: () => ({
+    repo: null,
+  }),
+  methods: {
+    onRepoSelected(repo) {
+      this.repo = repo;
+    },
+  },
+};
 </script>
 
 <style>
