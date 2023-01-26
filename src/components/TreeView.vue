@@ -28,7 +28,7 @@
           </v-card-title>
 
           <v-card-text>
-            <codehighligth :code="fileContent"></codehighligth>
+            <codehighligth :code="fileContentC"></codehighligth>
           </v-card-text>
 
           <v-divider></v-divider>
@@ -92,19 +92,22 @@ export default {
     dialog: false,
     initiallyOpen: ["public"],
     files: {
-      html: "mdi-language-html5",
-      js: "mdi-nodejs",
-      json: "mdi-code-json",
-      md: "mdi-language-markdown",
-      pdf: "mdi-file-pdf",
-      png: "mdi-file-image",
-      svg: "mdi-file-document-outline",
-      xls: "mdi-file-excel",
-      yml: "mdi-file",
-      gitignore: "mdi-github-box",
-      py: "mdi-language-python",
-      ico: "mdi-file",
-    },
+        html: 'mdi-language-html5',
+        js: 'mdi-nodejs',
+        json: 'mdi-code-json',
+        md: 'mdi-language-markdown',
+        pdf: 'mdi-file-pdf',
+        png: 'mdi-file-image',
+        svg : 'mdi-file-document-outline',
+        xls: 'mdi-file-excel',
+        yml: 'mdi-file',
+        py : "mdi-language-python",
+        ico: 'mdi-file',
+        txt: 'mdi-clipboard-text',
+        css: 'mdi-language-css3',
+        gitignore: 'mdi-block-helper',
+        vscode: 'mdi-laptop'
+      },
     tree: [],
     items: [],
   }),
@@ -113,5 +116,10 @@ export default {
       this.trataContent(this.content);
     },
   },
+  computed: {
+    fileContentC() {
+      return this.fileContent
+    }
+  }
 };
 </script>
